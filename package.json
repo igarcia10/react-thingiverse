@@ -1,0 +1,28 @@
+{
+  "name": "react-thingiverse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:back",
+    "build:back": "tsc -p server",
+    "start": "node dist/server.js",
+    "dev": "nodemon server/server.ts --exec ts-node server/server.ts -e ts"
+  },
+  "keywords": [],
+  "author": "igarcia10",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/express": "^4.17.0",
+    "nodemon": "^1.19.1",
+    "parcel": "^1.12.3",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1"
+  }
+}
