@@ -4,28 +4,29 @@ import Nav from './Nav';
 import { Things, ThingsType } from './Things';
 import ProtectedRoute from './ProtectedRoute';
 import Landing from './Landing';
-import { AuthProvider, AuthConsumer } from './AuthContext';
+import AuthContext from '../contexts/AuthContext';
+import AuthStateProvider from './AuthStateProvider';
 import Login from './Login';
 
 const App = () => (
     <Router>
-        <AuthProvider>
-            <AuthConsumer>
-                {({ bearer, login, logout }) => (
+        <AuthStateProvider>
+            <AuthContext.Consumer>
+                {context => (
                     <div>
-                        <Nav bearer={bearer} logout={logout} />
+                        <Nav {...context} />
                         <Switch>
-                            <Route exact path="/" render={() => bearer ? <Redirect to="/latest" /> : <Landing />} />
-                            <Route path="/login" render={props => <Login {...props} login={login} />} />
-                            <ProtectedRoute path="/latest" thingsType={ThingsType.Latest} component={Things} />
-                            <ProtectedRoute path="/newest" thingsType={ThingsType.Newest} component={Things} />
-                            <ProtectedRoute path="/popular" thingsType={ThingsType.Popular} component={Things} />
-                            <ProtectedRoute path="/featured" thingsType={ThingsType.Featured} component={Things} />
+                            <Route exact path="/" render={() => context.bearer ? <Redirect to="/latest" /> : <Landing />} />
+                            <Route path="/login" component={Login} />} />
+                            <ProtectedRoute path="/latest" bearer={context.bearer} thingsType={ThingsType.Latest} component={Things} />
+                            <ProtectedRoute path="/newest" bearer={context.bearer} thingsType={ThingsType.Newest} component={Things} />
+                            <ProtectedRoute path="/popular" bearer={context.bearer} thingsType={ThingsType.Popular} component={Things} />
+                            <ProtectedRoute path="/featured" bearer={context.bearer} thingsType={ThingsType.Featured} component={Things} />
                         </Switch>
                     </div>
                 )}
-            </AuthConsumer>
-        </AuthProvider>
+            </AuthContext.Consumer>
+        </AuthStateProvider>
     </Router>
 );
 

@@ -26,8 +26,7 @@ app.post('/auth', (req, res) => {
             client_secret: process.env.CLIENT_SECRET,
             code: req.body.code
         }
-    }).then(r => console.log(r)
-    )
+    }).then(r => console.log(r))
         .catch(err => {
             console.log(err.message);
             res.send('there was an error')

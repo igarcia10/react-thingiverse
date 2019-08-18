@@ -11,11 +11,8 @@ interface ThingsProps {
     thingsType: ThingsType;
 }
 
-export const Things = (props: ThingsProps) => {
-
-    return (
-        <div>
-            <h1>{props.thingsType}</h1>
-        </div>
-    )
-}
+export const Things = (props: ThingsProps) => (
+    <div>
+        <h1>{props.thingsType}</h1>
+    </div>
+);

@@ -1,20 +1,13 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import { AuthConsumer } from './AuthContext'
+import AuthContext from '../contexts/AuthContext';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-    return (
-        <AuthConsumer>
-            {({ bearer }) => (
-                <Route render={props =>
-                    bearer ? <Component {...props} {...rest} bearer={bearer} />
-                        : <Redirect to="/" />
-                }
-
-                />
-            )}
-        </AuthConsumer>
-    )
-}
+const ProtectedRoute = ({ component: Component, bearer, ...rest }) => (
+    <Route render={props =>
+        bearer ? <Component {...props} {...rest} bearer={bearer} />
+            : <Redirect to="/" />
+    }
+    />
+);
 
 export default ProtectedRoute;
