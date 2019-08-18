@@ -20,13 +20,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/auth', (req, res) => {
-    axios.post('https://www.thingiverse.com/login/oauth/access_token', {
+    axios.request({
+        method: 'POST',
+        url: 'https://www.thingiverse.com/login/oauth/access_token',
         params: {
             client_id: process.env.CLIENT_ID,
             client_secret: process.env.CLIENT_SECRET,
-            code: req.body.code
+            code: req.body.code,
         }
-    }).then(r => console.log(r))
+    }).then(r => res.json(r.data))
         .catch(err => {
             console.log(err.message);
             res.send('there was an error')

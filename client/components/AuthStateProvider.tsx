@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import AuthContext from '../contexts/AuthContext';
 
 const AuthStateProvider = props => {
-    const [bearer, setBearer] = useState(localStorage.getItem('bearer') || '');
+    const [bearer, setBearer] = useState(localStorage.getItem('auth') || '');
     const [isLoading, setLoading] = useState(false);
 
     const login = (bearer: string) => {
-        localStorage.setItem('bearer', bearer);
+        localStorage.setItem('auth', bearer);
         setBearer(bearer);
     }
 
     const logout = () => {
-        localStorage.removeItem('bearer');
+        localStorage.removeItem('auth');
         setBearer('');
     }
 

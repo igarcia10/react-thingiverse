@@ -22,11 +22,13 @@ const Login = props => {
 
         if (code) {
             axios.post('http://localhost:3000/auth', { code })
-                .then(({ data: { token_type, access_token } }) => {
-                    token_type = "bearer";
-                    access_token = "123456";
-                    if (access_token) {
-                        const bearer = `${token_type} ${access_token}`;
+                .then(({ data }) => {
+                    const tokenData = data.split('&').flatMap(t => t.split("="));
+                    const accessToken = tokenData[1];
+                    const tokenType = tokenData[3];
+
+                    if (tokenType && accessToken) {
+                        const bearer = `${tokenType} ${accessToken}`;
                         context.login(bearer);
                         props.history.push('/latest');
                         context.setLoading(false);
