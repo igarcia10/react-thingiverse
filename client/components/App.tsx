@@ -16,7 +16,7 @@ const App: React.FC = () => (
                     <div>
                         <Nav {...context} />
                         <Switch>
-                            <Route exact path="/" render={() => context.bearer ? <Redirect to="/latest" /> : <Landing isLoading={context.isLoading} />} />
+                            <Route exact path="/" render={() => context.bearer ? <Redirect to="/latest" /> : <Landing />} />
                             <Route path="/login" component={Login} />} />
                             <ProtectedRoute path="/latest" bearer={context.bearer} thingsType={EThingsType.Latest} component={Things} />
                             <ProtectedRoute path="/newest" bearer={context.bearer} thingsType={EThingsType.Newest} component={Things} />

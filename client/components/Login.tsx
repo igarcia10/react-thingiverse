@@ -32,7 +32,6 @@ const Login: React.FC<RouteComponentProps> = props => {
                         const bearer = `${tokenType} ${accessToken}`;
                         context.login(bearer);
                         props.history.push('/latest');
-                        context.setLoading(false);
                     } else {
                         redirect();
                     }
