@@ -1,13 +1,16 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import AuthContext from '../contexts/AuthContext';
+import { EThingsType, IThingsProps } from './Things';
 
-const ProtectedRoute = ({ component: Component, bearer, ...rest }) => (
-    <Route render={props =>
-        bearer ? <Component {...props} {...rest} bearer={bearer} />
-            : <Redirect to="/" />
-    }
-    />
+interface IProtectedRouteProps {
+    component: React.FC<IThingsProps>,
+    bearer: string,
+    path: string,
+    thingsType: EThingsType
+};
+
+const ProtectedRoute: React.FC<IProtectedRouteProps> = ({ component: Component, bearer, ...rest }) => (
+    <Route render={props => bearer ? <Component {...props} {...rest} /> : <Redirect to="/" />} />
 );
 
 export default ProtectedRoute;

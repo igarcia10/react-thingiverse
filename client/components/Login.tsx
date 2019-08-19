@@ -1,14 +1,16 @@
 import React, { useEffect, useContext } from 'react';
-import AuthContext from '../contexts/AuthContext'
+import { RouteComponentProps } from 'react-router-dom';
+import { AuthContext, IAuthContext } from '../contexts/AuthContext';
 import axios from 'axios';
 
-const redirect = () => {
-    window.location.href = `https://www.thingiverse.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code`;
-}
 
-const Login = props => {
+const Login: React.FC<RouteComponentProps> = props => {
 
-    const context = useContext(AuthContext);
+    const context: IAuthContext = useContext(AuthContext);
+
+    const redirect = () => {
+        window.location.href = context.apiUrl;
+    }
 
     useEffect(() => {
 
@@ -17,7 +19,6 @@ const Login = props => {
             return;
         }
 
-        context.setLoading(true);
         const code = props.location.search.split("=")[1];
 
         if (code) {

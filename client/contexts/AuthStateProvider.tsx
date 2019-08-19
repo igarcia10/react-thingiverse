@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import AuthContext from '../contexts/AuthContext';
+import { AuthContext } from './AuthContext';
 
-const AuthStateProvider = props => {
-    const [bearer, setBearer] = useState(localStorage.getItem('auth') || '');
-    const [isLoading, setLoading] = useState(false);
+const AuthStateProvider: React.FC = props => {
+    const [apiUrl] = useState<string>(`https://www.thingiverse.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code`);
+    const [bearer, setBearer] = useState<string>(localStorage.getItem('auth') || '');
+    const [isLoading, setLoading] = useState<boolean>(false);
 
     const login = (bearer: string) => {
         localStorage.setItem('auth', bearer);
@@ -17,6 +18,7 @@ const AuthStateProvider = props => {
 
     return (
         <AuthContext.Provider value={{
+            apiUrl: apiUrl,
             bearer: bearer,
             login: login,
             logout: logout,

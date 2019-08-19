@@ -1,18 +1,24 @@
 import { createContext } from "react";
 
-interface AuthContextInterface {
-    bearer: string,
-    login: Function
-    logout: Function,
-    isLoading: boolean
-    setLoading: Function
-}
-const defaultAuthContext: AuthContextInterface = {
-    bearer: '',
-    login: () => { },
-    logout: () => { },
-    isLoading: false,
-    setLoading: () => { }
+interface ISetLoadingFn {
+    (loading: boolean): void
 }
 
-export default createContext<AuthContextInterface>(defaultAuthContext);
+interface ILoginFn {
+    (bearer: string): void
+};
+
+interface ILogoutFn {
+    (): void
+};
+
+export interface IAuthContext {
+    apiUrl: string,
+    bearer: string,
+    isLoading: boolean,
+    setLoading: ISetLoadingFn,
+    login: ILoginFn,
+    logout: ILogoutFn
+};
+
+export const AuthContext: React.Context<IAuthContext> = createContext(undefined);
