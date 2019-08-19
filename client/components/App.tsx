@@ -7,6 +7,7 @@ import Landing from './Landing';
 import { AuthContext } from '../contexts/AuthContext';
 import AuthStateProvider from '../contexts/AuthStateProvider';
 import Login from './Login';
+import { Thing } from './Thing';
 
 const App: React.FC = () => (
     <Router>
@@ -22,6 +23,7 @@ const App: React.FC = () => (
                             <ProtectedRoute path="/newest" bearer={context.bearer} thingsType={EThingsType.Newest} component={Things} />
                             <ProtectedRoute path="/popular" bearer={context.bearer} thingsType={EThingsType.Popular} component={Things} />
                             <ProtectedRoute path="/featured" bearer={context.bearer} thingsType={EThingsType.Featured} component={Things} />
+                            <ProtectedRoute path="/thing/:id" bearer={context.bearer} component={Thing} />
                         </Switch>
                     </div>
                 )}

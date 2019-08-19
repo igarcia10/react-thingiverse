@@ -1,4 +1,5 @@
 import React from 'react'
+import { IThing } from './Thing';
 
 export enum EThingsType {
     Latest = "latest",
@@ -7,7 +8,7 @@ export enum EThingsType {
     Featured = "featured"
 }
 
-export interface IThingsProps {
+export interface IThingsProps extends IThing {
     thingsType: EThingsType
 }
 
