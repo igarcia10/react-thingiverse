@@ -1,7 +1,9 @@
 require('dotenv').config();
 import express from 'express';
+import graphqlHTTP from 'express-graphql';
 import cors from 'cors';
 import axios from 'axios';
+import { schema } from './schema';
 
 // Initializations
 const app = express();
@@ -13,12 +15,13 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 app.use('*', cors());
 
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}));
+
 
 //Routes
-app.get('/', (req, res) => {
-    res.send('Hola Mundo');
-});
-
 app.post('/auth', (req, res) => {
     axios.request({
         method: 'POST',

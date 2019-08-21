@@ -1,12 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { AuthContext, IAuthContext } from '../contexts/AuthContext';
+import { AuthContext, IAuthContextState } from '../contexts/AuthContext';
 import axios from 'axios';
 
 
 const Login: React.FC<RouteComponentProps> = props => {
 
-    const context: IAuthContext = useContext(AuthContext);
+    const context: IAuthContextState = useContext(AuthContext);
 
     const redirect = () => {
         window.location.href = context.apiUrl;
@@ -31,7 +31,7 @@ const Login: React.FC<RouteComponentProps> = props => {
                     if (tokenType && accessToken) {
                         const bearer = `${tokenType} ${accessToken}`;
                         context.login(bearer);
-                        props.history.push('/latest');
+                        props.history.push('/newest');
                     } else {
                         redirect();
                     }

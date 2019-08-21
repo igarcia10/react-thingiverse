@@ -1,8 +1,8 @@
 import React from 'react'
 
-export interface IThing { };
+export interface AThing { };
 
-interface IThingProps extends IThing { };
+interface IThingProps extends AThing { };
 
 export const Thing: React.FC<IThingProps> = () => {
     return (

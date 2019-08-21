@@ -1,19 +1,19 @@
 import React from 'react'
-import { IThing } from './Thing';
+import { AThing } from './Thing';
 
 export enum EThingsType {
-    Latest = "latest",
     Newest = "newest",
     Popular = "popular",
-    Featured = "featured"
+    Featured = "featured",
+    Verified = "verified"
 }
 
-export interface IThingsProps extends IThing {
+export interface IThingsProps extends AThing {
     thingsType: EThingsType
 }
 
-export const Things: React.FC<IThingsProps> = props => (
+export const Things: React.FC<IThingsProps> = ({ thingsType }) => (
     <div>
-        <h1>{props.thingsType}</h1>
+        <h1>{thingsType}</h1>
     </div>
 );

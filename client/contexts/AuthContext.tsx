@@ -8,11 +8,11 @@ interface ILogoutFn {
     (): void
 };
 
-export interface IAuthContext {
+export interface IAuthContextState {
     apiUrl: string,
     bearer: string,
     login: ILoginFn,
     logout: ILogoutFn
 };
 
-export const AuthContext: React.Context<IAuthContext> = createContext(undefined);
+export const AuthContext: React.Context<IAuthContextState> = createContext(undefined);
