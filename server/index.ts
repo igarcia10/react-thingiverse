@@ -1,12 +1,28 @@
 require('dotenv').config();
 import express from 'express';
-import graphqlHTTP from 'express-graphql';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 import cors from 'cors';
 import axios from 'axios';
-import { schema } from './schema';
+import { typeDefs } from './typeDefs';
+import { resolvers } from './resolvers';
+import ThingiverseAPI from './dataSource';
+import graphqlHTTP from 'express-graphql';
+import console = require('console');
 
 // Initializations
 const app = express();
+const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers
+});
+
+const server = new ApolloServer({
+    schema,
+    context: ({ req }) => ({
+        token: req.headers.authorization
+    }),
+    dataSources: () => ({ thingiverseAPI: new ThingiverseAPI() })
+});
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -16,10 +32,9 @@ app.use(express.json());
 app.use('*', cors());
 
 app.use('/graphql', graphqlHTTP({
-    schema: schema,
+    schema,
     graphiql: true
 }));
-
 
 //Routes
 app.post('/auth', (req, res) => {
@@ -41,7 +56,7 @@ app.post('/auth', (req, res) => {
 // Static files
 app.use(express.static('dist'));
 
-// Starting the server
-app.listen(app.get('port'), () => {
-    console.log(`Server listening on port ${app.get('port')}`);
-});
+// Starting the servers
+app.listen(app.get('port'), () => console.log(`Server listening on port ${app.get('port')}`));
+
+server.listen().then(({ url }) => console.log(`Apollo Server ready at ${url}`));

@@ -1,14 +1,13 @@
-import { GraphQLSchema } from 'graphql';
-import { makeExecutableSchema, ITypeDefinitions } from 'graphql-tools';
-import { resolvers } from './resolvers';
+import { gql } from 'apollo-server-express';
 
-const typeDefs: ITypeDefinitions = `
+export const typeDefs = gql`
     type Query {
         newest: [Thing]
         popular: [Thing]
         featured: [Thing]
         verified: [Thing]
         thing(id: Int!): Thing
+        hi: String
     }
 
     type Thing {
@@ -33,8 +32,3 @@ const typeDefs: ITypeDefinitions = `
         thumbnail: String
     }
 `;
-
-export const schema: GraphQLSchema = makeExecutableSchema({
-    typeDefs: typeDefs,
-    resolvers
-})
