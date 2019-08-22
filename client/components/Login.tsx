@@ -31,7 +31,7 @@ const Login: React.FC<RouteComponentProps> = props => {
                     if (tokenType && accessToken) {
                         const bearer = `${tokenType} ${accessToken}`;
                         context.login(bearer);
-                        props.history.push('/newest');
+                        props.history.push(`/${context.thingsURI}/newest`);
                     } else {
                         redirect();
                     }

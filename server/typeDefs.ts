@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from 'apollo-boost';
 
 export const typeDefs = gql`
     type Query {
@@ -7,7 +7,6 @@ export const typeDefs = gql`
         featured: [Thing]
         verified: [Thing]
         thing(id: Int!): Thing
-        hi: String
     }
 
     type Thing {
