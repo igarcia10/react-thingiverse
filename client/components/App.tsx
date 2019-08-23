@@ -29,11 +29,11 @@ const App: React.FC = () => (
                         <Switch>
                             <Route exact path="/" render={() => bearer ? <Redirect to='/things/newest' /> : <Landing />} />
                             <Route path="/login" component={Login} />} />
-                                    <ProtectedRoute path='/things/newest' thingsType={EThingsType.Newest} component={Things} />
-                            <ProtectedRoute path='/things/popular' thingsType={EThingsType.Popular} component={Things} />
-                            <ProtectedRoute path='/things/featured' thingsType={EThingsType.Featured} component={Things} />
-                            <ProtectedRoute path='/things/verified' thingsType={EThingsType.Verified} component={Things} />
-                            <ProtectedRoute path='/things/:id' component={Thing} />
+                            <ProtectedRoute path="/things/newest" thingsType={EThingsType.Newest} component={Things} />
+                            <ProtectedRoute path="/things/popular" thingsType={EThingsType.Popular} component={Things} />
+                            <ProtectedRoute path="/things/featured" thingsType={EThingsType.Featured} component={Things} />
+                            <ProtectedRoute path="/things/verified" thingsType={EThingsType.Verified} component={Things} />
+                            <ProtectedRoute path="/things/:id" component={Thing} />
                         </Switch>
                     </ApolloProvider>
                 )}

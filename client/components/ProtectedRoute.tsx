@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom';
 import { EThingsType } from './Things';
-import { AThing } from './Thing';
 import { AuthContext, IAuthContextState } from '../contexts/AuthContext';
 
 interface IProtectedRouteProps {
@@ -15,7 +14,7 @@ const ProtectedRoute: React.FC<IProtectedRouteProps> = ({ component: Component, 
     const { bearer } = useContext<IAuthContextState>(AuthContext);
 
     return (
-        <Route render={props => bearer ? <Component {...props} {...rest} /> : <Redirect to="/" />} />
+        <Route {...rest} render={props => bearer ? <Component {...props} {...rest} /> : <Redirect to="/" />} />
     );
 };
 

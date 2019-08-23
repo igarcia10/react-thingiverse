@@ -1,13 +1,30 @@
 import React from 'react'
+import { RouteComponentProps } from 'react-router';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
-export interface AThing { };
+export const Thing: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
 
-interface IThingProps extends AThing { };
+    const { loading, error, data } = useQuery(gql`
+    {
+      thing(id: ${match.params.id}) {
+        id
+        name
+      }
+    }
+  `);
 
-export const Thing: React.FC<IThingProps> = () => {
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
     return (
         <div>
-            <h1>thing</h1>
+            {Object.keys(data.thing).map(k => (
+                <div key={data.thing.id}>
+                    <p>
+                        {data.thing[k]}
+                    </p>
+                </div>))}
         </div>
-    )
+    );
 }
