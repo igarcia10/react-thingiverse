@@ -19,12 +19,12 @@ export const Thing: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) 
 
     return (
         <div>
-            {Object.keys(data.thing).map(k => (
-                <div key={data.thing.id}>
+            {Object.keys(data.thing).map((k, i) => (
+                <div key={i}>
                     <p>
                         {data.thing[k]}
                     </p>
                 </div>))}
         </div>
     );
-}
+};

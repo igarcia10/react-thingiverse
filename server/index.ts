@@ -1,13 +1,13 @@
 require('dotenv').config();
+import console = require('console');
 import express from 'express';
+import graphqlHTTP from 'express-graphql';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 import cors from 'cors';
 import axios from 'axios';
 import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
-import ThingiverseAPI from './dataSource';
-import graphqlHTTP from 'express-graphql';
-import console = require('console');
+import ThingiverseAPI from './ThingiverseAPI';
 
 // Initializations
 const app = express();
@@ -58,5 +58,4 @@ app.use(express.static('dist'));
 
 // Starting the servers
 app.listen(app.get('port'), () => console.log(`Server listening on port ${app.get('port')}`));
-
 server.listen().then(({ url }) => console.log(`Apollo Server ready at ${url}`));

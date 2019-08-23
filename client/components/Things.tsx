@@ -7,13 +7,14 @@ export enum EThingsType {
   Popular = "popular",
   Featured = "featured",
   Verified = "verified"
-}
+};
 
 export interface IThingsProps {
   thingsType: EThingsType
-}
+};
 
 export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
+
   const { loading, error, data } = useQuery(gql`
     {
       ${thingsType} {

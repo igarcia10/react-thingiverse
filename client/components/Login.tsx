@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { AuthContext, IAuthContextState } from '../contexts/AuthContext';
 import axios from 'axios';
+import { AuthContext, IAuthContextState } from '../contexts/AuthContext';
 
 
 const Login: React.FC<RouteComponentProps> = props => {
@@ -42,6 +42,6 @@ const Login: React.FC<RouteComponentProps> = props => {
     }, []);
 
     return <div>Logging in...</div>;
-}
+};
 
 export default Login;

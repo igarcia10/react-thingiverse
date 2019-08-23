@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 import Nav from './Nav';
 import { Things, EThingsType } from './Things';
 import ProtectedRoute from './ProtectedRoute';
@@ -8,8 +10,6 @@ import { AuthContext } from '../contexts/AuthContext';
 import AuthStateProvider from '../contexts/AuthStateProvider';
 import Login from './Login';
 import { Thing } from './Thing';
-import ApolloClient, { InMemoryCache } from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
