@@ -12,8 +12,7 @@ export interface IAuthContextState {
     apiUrl: string,
     bearer: string,
     login: ILoginFn,
-    logout: ILogoutFn,
-    thingsURI: string
+    logout: ILogoutFn
 };
 
 export const AuthContext: React.Context<IAuthContextState> = createContext(undefined);

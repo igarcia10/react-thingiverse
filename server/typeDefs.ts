@@ -12,22 +12,36 @@ export const typeDefs = gql`
     type Thing {
         id: ID
         name: String
-        url: String
-        public_url: String
         thumbnail: String
         creator: Creator
-        is_private: Boolean
-        is_purchased: Boolean
-        is_published: Boolean
+        like_count: Int
+        download_count: Int
+        view_count: Int
+        default_image: Image
+        description: String
+        description_html: String
+        instructions: String
+        instructions_html: String
+        details: String
+        license: String
     }
 
     type Creator {
-        id: ID
         name: String
         first_name: String
         last_name: String
-        url: String
-        public_url: String
         thumbnail: String
+    }
+
+    type Image {
+        url: String
+        name: String
+        sizes: [Size]
+    }
+
+    type Size {
+        type: String
+        size: String
+        url: String
     }
 `;
