@@ -10,6 +10,23 @@ import { AuthContext } from '../contexts/AuthContext';
 import AuthStateProvider from '../contexts/AuthStateProvider';
 import Login from './Login';
 import { Thing } from './Thing';
+import { ThemeProvider } from 'styled-components';
+
+export interface ITheme {
+    theme: IThemeProps
+}
+
+interface IThemeProps {
+    primary: string,
+    secondary: string,
+    font: string
+};
+
+const theme: IThemeProps = {
+    primary: 'yellow',
+    secondary: 'blueviolet',
+    font: '"Antenna",Helvetica,Arial,sans-serif'
+}
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
@@ -21,24 +38,26 @@ const client = new ApolloClient({
 
 const App: React.FC = () => (
     <Router>
-        <AuthStateProvider>
-            <AuthContext.Consumer>
-                {({ bearer }) => (
-                    <ApolloProvider client={client}>
-                        <Nav />
-                        <Switch>
-                            <Route exact path="/" render={() => bearer ? <Redirect to='/things/newest' /> : <Landing />} />
-                            <Route path="/login" component={Login} />} />
-                            <ProtectedRoute path="/things/newest" thingsType={EThingsType.Newest} component={Things} />
-                            <ProtectedRoute path="/things/popular" thingsType={EThingsType.Popular} component={Things} />
-                            <ProtectedRoute path="/things/featured" thingsType={EThingsType.Featured} component={Things} />
-                            <ProtectedRoute path="/things/verified" thingsType={EThingsType.Verified} component={Things} />
-                            <ProtectedRoute path="/things/:id" component={Thing} />
-                        </Switch>
-                    </ApolloProvider>
-                )}
-            </AuthContext.Consumer>
-        </AuthStateProvider>
+        <ThemeProvider theme={theme}>
+            <AuthStateProvider>
+                <AuthContext.Consumer>
+                    {({ bearer }) => (
+                        <ApolloProvider client={client}>
+                            <Nav />
+                            <Switch>
+                                <Route exact path="/" render={() => bearer ? <Redirect to='/things/newest' /> : <Landing />} />
+                                <Route path="/login" component={Login} />} />
+                                <ProtectedRoute path="/things/newest" thingsType={EThingsType.Newest} component={Things} />
+                                <ProtectedRoute path="/things/popular" thingsType={EThingsType.Popular} component={Things} />
+                                <ProtectedRoute path="/things/featured" thingsType={EThingsType.Featured} component={Things} />
+                                <ProtectedRoute path="/things/verified" thingsType={EThingsType.Verified} component={Things} />
+                                <ProtectedRoute path="/things/:id" component={Thing} />
+                            </Switch>
+                        </ApolloProvider>
+                    )}
+                </AuthContext.Consumer>
+            </AuthStateProvider>
+        </ThemeProvider>
     </Router>
 );
 

@@ -2,25 +2,36 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IAuthContextState, AuthContext } from '../contexts/AuthContext';
 import { EThingsType } from './Things';
+import { Button, Nav as StyledNav, Logo } from '../elements/index'
 
 const Nav: React.FC = () => {
-    const { bearer, logout, apiUrl } = useContext<IAuthContextState>(AuthContext);
+    const { bearer, logout, apiUrl, loading, setLoading } = useContext<IAuthContextState>(AuthContext);
 
-    return (
-        <nav>
-            <div>
-                {bearer ? (
-                    <ul>
-                        {Object.keys(EThingsType).map(t =>
-                            <li key={t}><Link to={`/things/${EThingsType[t]}`}>{EThingsType[t]}</Link></li>
-                        )}
-                        <button onClick={logout}>logout</button>
-                    </ul>
-                ) :
-                    <button onClick={() => window.location.href = apiUrl}>Log in</button>}
-            </div>
-        </nav>
+    const clickFn = () => {
+        setLoading(true);
+        window.location.href = apiUrl;
+    }
+
+    const linksMenu = (
+        <StyledNav>
+            <Logo></Logo>
+            {Object.keys(EThingsType).map(t =>
+                <span key={t}><Link to={`/things/${EThingsType[t]}`}>{EThingsType[t]}</Link></span>
+            )}
+            <Button onClick={logout}>logout</Button>
+        </StyledNav>
     );
+
+    const loginHeader = (
+        <StyledNav>
+            <Logo></Logo>
+            <Button disabled={loading} onClick={clickFn}>Log in</Button>
+        </StyledNav>
+    );
+
+    return (<div>
+        {bearer ? linksMenu : loginHeader}
+    </div >);
 };
 
 export default Nav;

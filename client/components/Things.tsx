@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { ListedThingCard, ThingHeader, ListImage, InteractionFooter, CreatorImage } from '../elements/index'
 import { Creator } from './Thing';
 
 export enum EThingsType {
@@ -22,9 +23,16 @@ interface IThingListModel {
   creator: Creator
 };
 
+interface IData {
+  newest?: IThingListModel[],
+  popular?: IThingListModel[],
+  featured?: IThingListModel[],
+  verified?: IThingListModel[],
+}
+
 export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
 
-  const { loading, error, data } = useQuery<IThingListModel>(gql`
+  const { loading, error, data } = useQuery<IData>(gql`
     {
       ${thingsType} {
           id
@@ -32,8 +40,6 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
           thumbnail
           creator{
             name
-            first_name
-            last_name
             thumbnail
           }
         }
@@ -43,28 +49,28 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data[thingsType].map(({ id, name, thumbnail, creator }) => (
-    <Link key={id} to={`/things/${id}`}>
-      <div>
-        <p>
-          {name}
-        </p>
-      </div>
-      <img src={thumbnail} alt="thumbnail" />
-      <div>
-        <div>
-          <img src={creator.thumbnail} alt="thumbnail" />
-          <div>
-            {creator.name}
-          </div>
-          <div>
-            {creator.first_name}
-          </div>
-          <div>
-            {creator.last_name}
-          </div>
-        </div>
-      </div>
-    </Link>
-  ));
+  return (
+    <div>
+      {data[thingsType].map(({ id, name, thumbnail, creator }) => (
+
+        <ListedThingCard key={id}>
+          <ThingHeader>
+            <CreatorImage src={creator.thumbnail} alt="thumbnail" />
+            <div>
+              <span>{name}</span>
+              <span>by {creator.name}</span>
+            </div>
+          </ThingHeader>
+          <Link to={`/things/${id}`} >
+            <ListImage src={thumbnail} alt="thumbnail" />
+          </Link>
+          <InteractionFooter>
+            <div>
+
+            </div>
+          </InteractionFooter>
+        </ListedThingCard>
+      ))}
+    </div>
+  );
 };

@@ -7,6 +7,7 @@ import { AuthContext, IAuthContextState } from '../contexts/AuthContext';
 const Login: React.FC<RouteComponentProps> = props => {
 
     const context: IAuthContextState = useContext(AuthContext);
+    context.setLoading(true);
 
     const redirect = () => {
         window.location.href = context.apiUrl;

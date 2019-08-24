@@ -4,6 +4,7 @@ import { AuthContext } from './AuthContext';
 const AuthStateProvider: React.FC = props => {
     const [apiUrl] = useState<string>(`https://www.thingiverse.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code`);
     const [bearer, setBearer] = useState<string>(localStorage.getItem('auth') || '');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const login = bearer => {
         localStorage.setItem('auth', bearer);
@@ -20,7 +21,9 @@ const AuthStateProvider: React.FC = props => {
             apiUrl,
             bearer,
             login,
-            logout
+            logout,
+            loading,
+            setLoading
         }}>
             {props.children}
         </AuthContext.Provider>
