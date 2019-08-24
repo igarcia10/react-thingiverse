@@ -52,29 +52,19 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
   return (
     <Content>
       {data[thingsType].map(({ id, name, thumbnail, creator }) => (
-
-        <ListedThingCard key={id}>
-          <ThingHeader>
-            <CreatorImage src={creator.thumbnail} alt="thumbnail" />
-            <div className="headerContent">
-              <div>{name}</div>
-              <div>by {creator.name}</div>
-            </div>
-          </ThingHeader>
-          <Link to={`/things/${id}`} >
+        <ListedThingCard key={id} className="grow">
+          <Link to={`/things/${id}`} style={{ textDecoration: 'none' }}>
+            <ThingHeader>
+              <CreatorImage src={creator.thumbnail} alt="thumbnail" />
+              <div className="headerContent">
+                {creator.name}
+              </div>
+            </ThingHeader>
             <ListImage src={thumbnail} alt="thumbnail" />
+            <InteractionFooter>
+              <div>{name}</div>
+            </InteractionFooter>
           </Link>
-          <InteractionFooter>
-            <div>
-              💕 {}
-            </div>
-            <div>
-              👀
-            </div>
-            <div>
-              📥
-            </div>
-          </InteractionFooter>
         </ListedThingCard>
       ))}
     </Content>

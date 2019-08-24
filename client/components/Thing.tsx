@@ -94,6 +94,15 @@ export const Thing: React.FC<RouteComponentProps<PathParams>> = props => {
         <div>
           {thing.creator.last_name}
         </div>
+        <div>
+          💕
+            </div>
+        <div>
+          👀
+            </div>
+        <div>
+          📥
+            </div>
       </div>
       <button onClick={props.history.goBack}>Back</button>
     </div>

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { ITheme } from '../components/App';
 
 export const CreatorImage = styled.img`
     box-sizing: border-box;
-    border: 2px solid #fff;
+    border: 2px solid ${(props: ITheme) => props.theme.secondary};
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    background-color: #fff;
+    background-color: ${(props: ITheme) => props.theme.secondary};
     display: inline-block;
     vertical-align: middle;
     height: 40px;

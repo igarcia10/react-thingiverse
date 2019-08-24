@@ -3,19 +3,21 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
     cursor: pointer;
-    font-family: sans-serif;
-    font-size: 1.3rem;
-    border: none;
-    border-radius: 5px;
-    padding: 7px 10px;
+    color: ${(props: ITheme) => props.theme.tertiary};
     background: ${(props: ITheme) => props.theme.secondary};
-    color: #fff;
+    border: 2px solid ${(props: ITheme) => props.theme.tertiary};
+    font-size: 1em;
+    padding: 0.25em 1em;
+    border-radius: 3px;
     margin-right: 30px;
     &:hover {
-        background:  #28b463;
+        color: ${(props: ITheme) => props.theme.primary};
+        background:  ${(props: ITheme) => props.theme.tertiary};
     }
     &:disabled {
         cursor: auto;
-        background:   #abebc6;
+        color: ${(props: ITheme) => props.theme.primary};
+        background:  #fef9e7;
+        border: 2px solid ${(props: ITheme) => props.theme.primary};
     }
 `;

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import { ITheme } from '../components/App';
 
 export const Logo = styled.div`
     background: url(https://cdn.thingiverse.com/site/img/thingiverse-logo-2015.png) center center no-repeat;
+    filter: invert(100%);
     width: 128px;
     height: 23px;
     background-size: auto; 
@@ -19,18 +21,16 @@ export const Nav = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
-    background: ${props => props.theme.primary};
+    background: ${(props: ITheme) => props.theme.primary};
     width: 100%;
-    font-family: ${props => props.theme.font};
+    font-family: ${(props: ITheme) => props.theme.font};
     text-transform: uppercase;
     & a {
-        color: #3498db;
+        color: ${(props: ITheme) => props.theme.tertiary};
         text-decoration: none;
         font-weight: bold;
-        width: 100%;
-        height: 100%;
     }
     & a:hover {
-       background: #f7dc6f;
+       color:  #d68910;
     }
 `;

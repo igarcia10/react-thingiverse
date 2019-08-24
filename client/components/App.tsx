@@ -19,12 +19,18 @@ export interface ITheme {
 interface IThemeProps {
     primary: string,
     secondary: string,
+    tertiary: string,
+    background: string,
+    shadow: string,
     font: string
 };
 
 const theme: IThemeProps = {
     primary: '#f9e79f',
-    secondary: ' #58d68d ',
+    secondary: '#fcf3cf',
+    tertiary: '#f39c12',
+    background: '#fdf2e9',
+    shadow: '10px 10px 7px -4px rgba(166,166,166,1)',
     font: '"Antenna",Helvetica,Arial,sans-serif'
 }
 
