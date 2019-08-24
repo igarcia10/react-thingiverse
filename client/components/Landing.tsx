@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { IAuthContextState, AuthContext } from '../contexts/AuthContext';
+import { Content } from '../elements/index';
 
 const Landing: React.FC = () => {
 
     const { loading }: IAuthContextState = useContext(AuthContext);
 
     return (
-        <div>
-            {loading ? <div>Loading...</div> : <div>You must log in to Thingiverse.</div>}
-        </div >
+        <Content>
+            {loading ? <div>&#x23F3; Redirecting to Thingiverse...</div> : <div>You must log in to Thingiverse.</div>}
+        </Content >
     );
 }
 

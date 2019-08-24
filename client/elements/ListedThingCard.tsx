@@ -1,7 +1,5 @@
-import styled from 'styled-components';
-
-export const CreatorCard = styled.div`
-`;
+import styled from "styled-components";
+import { ITheme } from "../components/App";
 
 export const ThingHeader = styled.div`
     position: absolute;
@@ -14,6 +12,18 @@ export const ThingHeader = styled.div`
     font-weight: bold;
     color: #fff;
     background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    box-sizing: border-box;
+    & .headerContent {
+        font-family: ${(props: ITheme) => props.theme.font};
+        display: inline-block;
+        height: 3em;
+        left: 50px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+    }
 `;
 
 export const ListedThingCard = styled.div`
@@ -28,6 +38,7 @@ export const ListedThingCard = styled.div`
     margin-bottom: 20px;
     background: #fff;
     overflow: hidden;
+    margin: 15px;
 `;
 
 export const InteractionFooter = styled.div`
@@ -37,8 +48,4 @@ export const InteractionFooter = styled.div`
     line-height: 1em;
     position: relative;
     background: #fff;
-`;
-
-export const ThingCard = styled.div`
-
 `;

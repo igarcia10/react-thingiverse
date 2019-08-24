@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { ListedThingCard, ThingHeader, ListImage, InteractionFooter, CreatorImage } from '../elements/index'
+import { ListedThingCard, ThingHeader, ListImage, InteractionFooter, CreatorImage, Content } from '../elements/index'
 import { Creator } from './Thing';
 
 export enum EThingsType {
@@ -46,19 +46,19 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
       }
   `);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Content>&#x231B; Loading...</Content>;
+  if (error) return <Content>&#x274C; Error :(</Content>;
 
   return (
-    <div>
+    <Content>
       {data[thingsType].map(({ id, name, thumbnail, creator }) => (
 
         <ListedThingCard key={id}>
           <ThingHeader>
             <CreatorImage src={creator.thumbnail} alt="thumbnail" />
-            <div>
-              <span>{name}</span>
-              <span>by {creator.name}</span>
+            <div className="headerContent">
+              <div>{name}</div>
+              <div>by {creator.name}</div>
             </div>
           </ThingHeader>
           <Link to={`/things/${id}`} >
@@ -66,11 +66,17 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
           </Link>
           <InteractionFooter>
             <div>
-
+              💕 {}
+            </div>
+            <div>
+              👀
+            </div>
+            <div>
+              📥
             </div>
           </InteractionFooter>
         </ListedThingCard>
       ))}
-    </div>
+    </Content>
   );
 };

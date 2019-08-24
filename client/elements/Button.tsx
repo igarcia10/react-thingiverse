@@ -10,7 +10,12 @@ export const Button = styled.button`
     padding: 7px 10px;
     background: ${(props: ITheme) => props.theme.secondary};
     color: #fff;
+    margin-right: 30px;
     &:hover {
-        background: blue;
+        background:  #28b463;
+    }
+    &:disabled {
+        cursor: auto;
+        background:   #abebc6;
     }
 `;

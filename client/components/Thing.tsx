@@ -2,6 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
+import { Content } from '../elements/index';
 
 interface PathParams {
   id: string,
@@ -55,8 +56,8 @@ export const Thing: React.FC<RouteComponentProps<PathParams>> = props => {
     }
   `);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <Content>&#x231B; Loading...</Content>;
+  if (error) return <Content>&#x274C; Error :(</Content>;
 
   return (
     <div>

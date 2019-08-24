@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-import Nav from './Nav';
+import Header from './Header';
 import { Things, EThingsType } from './Things';
 import ProtectedRoute from './ProtectedRoute';
 import Landing from './Landing';
@@ -23,8 +23,8 @@ interface IThemeProps {
 };
 
 const theme: IThemeProps = {
-    primary: 'yellow',
-    secondary: 'blueviolet',
+    primary: '#f9e79f',
+    secondary: ' #58d68d ',
     font: '"Antenna",Helvetica,Arial,sans-serif'
 }
 
@@ -43,7 +43,7 @@ const App: React.FC = () => (
                 <AuthContext.Consumer>
                     {({ bearer }) => (
                         <ApolloProvider client={client}>
-                            <Nav />
+                            <Header />
                             <Switch>
                                 <Route exact path="/" render={() => bearer ? <Redirect to='/things/newest' /> : <Landing />} />
                                 <Route path="/login" component={Login} />} />

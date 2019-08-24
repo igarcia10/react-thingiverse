@@ -9,20 +9,28 @@ export const Logo = styled.div`
 `;
 
 export const Nav = styled.nav`
+    z-index: 1;
     top: 0;
-    bottom: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-    position: relative;
+    left:0;
+    position: fixed;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-evenly;
-    vertical-align: middle;
-    padding: 0.4rem 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
     background: ${props => props.theme.primary};
     width: 100%;
     font-family: ${props => props.theme.font};
-    font-weight: normal;
     text-transform: uppercase;
+    & a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+    }
+    & a:hover {
+       background: #f7dc6f;
+    }
 `;
