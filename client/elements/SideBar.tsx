@@ -13,7 +13,7 @@ export const SideBar = styled.div`
     font-weight: 500;
     & div {
         padding: 6px 8px 6px 16px;
-        font-size: 18px;
+        font-size: 14px;
         display: block;
     }
     & button {
