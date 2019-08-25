@@ -1,11 +1,8 @@
 import styled from 'styled-components';
-import { ITheme } from '../components/App';
-import { Card } from './common'
+import { CreatorImage } from './Images';
 
 export const DetailContainer = styled.div`
-    font-family: ${(props: ITheme) => props.theme.font};
-    color: ${(props: ITheme) => props.theme.fontColor};
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     & button {
@@ -14,14 +11,42 @@ export const DetailContainer = styled.div`
     }
 `;
 
-export const ThingDetailCard = styled(Card)`
-    width: 60%;
-    height: 100%;
-    & .title {
-        font-size: 20px;
+export const DetailHeader = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    & .names {
+        flex-direction: column;
+        margin: 2px 0 25px 10px;
+    }
+    & .thingName {
+        font-size: 30px;
+        font-weight: 600;
+    }
+    & .creatorName {
+        font-size: 12px;
     }
 `;
 
-export const ThingDetailFooter = styled.div`
+export const DetailCreatorImage = styled(CreatorImage)`
+    height: 60px;
+    width: 60px;
+`;
 
+export const ThingContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    vertical-align: top;
+`;
+
+export const DescriptionContainer = styled.section`
+    width: 55%;
+`;
+
+export const DetailFooter = styled.div`
+    font-size: 12px;
+    margin-top: 10px;
+    font-style: italic;
 `;

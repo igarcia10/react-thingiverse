@@ -19,6 +19,6 @@ export const ListImage = styled.img`
 `;
 
 export const DetailImage = styled.img`
-    width: 50%;
+    width: 40%;
     height: auto;
 `;

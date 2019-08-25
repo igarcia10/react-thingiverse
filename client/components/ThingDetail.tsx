@@ -2,7 +2,8 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-import { Content, Button, ThingDetailCard, CreatorDetailCard, DetailContainer, DetailImage, CreatorDetailImage, ThingDetailFooter } from '../elements/index';
+import { Content, Button, DetailContainer, DetailCreatorImage, DetailHeader, DetailImage, DetailFooter, DescriptionContainer, ThingContainer } from '../elements/index';
+import { SideBar } from '../elements/SideBar';
 
 interface PathParams {
   id: string,
@@ -59,37 +60,34 @@ export const ThingDetail: React.FC<RouteComponentProps<PathParams>> = props => {
 
   return (
     <Content>
+      <SideBar>
+        <Button style={{ marginTop: '6px' }} onClick={props.history.goBack}>BACK</Button>
+        <div>💕 {thing.like_count}</div>
+        <div>👀 {thing.view_count}</div>
+        <div>📥 {thing.download_count}</div>
+      </SideBar>
       <DetailContainer>
-        <CreatorDetailCard>
-          <CreatorDetailImage src={thing.creator.thumbnail} alt="thumbnail" />
-          <div>
-            {thing.creator.name}
-          </div>
-          <div>
-            {thing.creator.first_name}
-          </div>
-          <div>
-            {thing.creator.last_name}
-          </div>
-        </CreatorDetailCard>
-        <ThingDetailCard>
-          <h1 className="title">
-            {thing.name}
-          </h1>
-          <DetailImage src={thing.thumbnail} alt="thumbnail" />
-          <div>
-            <div>
-              {thing.description}
+        <DetailHeader>
+          <DetailCreatorImage src={thing.creator.thumbnail} alt="thumbnail" />
+          <div className="names">
+            <div className="thingName">
+              {thing.name}
+            </div>
+            <div className="creatorName">
+              by {thing.creator.name} ({thing.creator.first_name} {thing.creator.last_name})
             </div>
           </div>
-          <ThingDetailFooter>
-            License: {thing.license}
-            <span>💕{thing.like_count}</span>
-            <span>👀{thing.view_count}</span>
-            <span>📥{thing.download_count}</span>
-          </ThingDetailFooter>
-        </ThingDetailCard>
-        <Button onClick={props.history.goBack}>Back</Button>
+        </DetailHeader>
+        <ThingContainer>
+          <DetailImage src={thing.thumbnail} alt="thumbnail" />
+          <DescriptionContainer>
+            <h2 style={{ marginTop: '0px' }}>Description: </h2>
+            {thing.description}
+            <DetailFooter>
+              License: {thing.license}
+            </DetailFooter>
+          </DescriptionContainer>
+        </ThingContainer>
       </DetailContainer>
     </Content>
   );
