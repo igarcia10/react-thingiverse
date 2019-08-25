@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import { EThingsType } from './Things';
+import { EThingsType } from './ThingList';
 import { AuthContext, IAuthContextState } from '../contexts/AuthContext';
 
 interface IProtectedRouteProps {

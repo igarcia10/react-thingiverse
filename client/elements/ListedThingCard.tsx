@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ITheme } from "../components/App";
+import { Card } from './common'
 
 export const ThingHeader = styled.div`
     position: absolute;
-    display: inline-block;
     width: 100%;
     height: 60px;
     padding: 5px;
@@ -14,7 +14,6 @@ export const ThingHeader = styled.div`
     box-sizing: border-box;
     & .headerContent {
         font-family: ${(props: ITheme) => props.theme.font};
-        display: inline-block;
         height: 2em;
         left: 50px;
         position: absolute;
@@ -25,29 +24,19 @@ export const ThingHeader = styled.div`
     }
 `;
 
-export const ListedThingCard = styled.div`
+export const ListedThingCard = styled(Card)`
     width: 296px;
     height: 265px;
-    display: inline-block;
-    border: 2px solid #ececec;
-    border-radius: 15px;
     font-size: 0;
     line-height: 0;
-    position: relative;
-    background: #fff;
-    overflow: hidden;
-    margin: 15px;
-    box-shadow: ${(props: ITheme) => props.theme.shadow};
 `;
 
-export const InteractionFooter = styled.div`
+export const ListFooter = styled.div`
     height: 42px;
-    border-top: 1px solid #ececec;
+    border-top: 1px solid ${(props: ITheme) => props.theme.primary};
     font-size: 16px;
     font-family: ${(props: ITheme) => props.theme.font};
     line-height: 1em;
-    position: relative;
-    background: #fff;
     text-align: center;
     padding-top: 13px;
     font-weight: bold;

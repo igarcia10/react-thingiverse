@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IAuthContextState, AuthContext } from '../contexts/AuthContext';
-import { EThingsType } from './Things';
+import { EThingsType } from './ThingList';
 import { Button, Nav, Logo } from '../elements/index'
 
 const Header: React.FC = () => {

@@ -8,18 +8,17 @@ export const CreatorImage = styled.img`
     overflow: hidden;
     position: relative;
     background-color: ${(props: ITheme) => props.theme.secondary};
-    display: inline-block;
     vertical-align: middle;
     height: 40px;
     width: 40px;
 `;
 
 export const ListImage = styled.img`
-    display: inline-block;
     width: 100%;
     height: 219px;
 `;
 
 export const DetailImage = styled.img`
-    
+    width: 50%;
+    height: auto;
 `;

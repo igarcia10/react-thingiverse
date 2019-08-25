@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { ListedThingCard, ThingHeader, ListImage, InteractionFooter, CreatorImage, Content } from '../elements/index'
-import { Creator } from './Thing';
+import { ListedThingCard, ThingHeader, ListImage, ListFooter, CreatorImage, Content } from '../elements/index'
+import { Creator } from './ThingDetail';
 
 export enum EThingsType {
   Newest = "newest",
@@ -30,7 +30,7 @@ interface IData {
   verified?: IThingListModel[],
 }
 
-export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
+export const ThingList: React.FC<IThingsProps> = ({ thingsType }) => {
 
   const { loading, error, data } = useQuery<IData>(gql`
     {
@@ -47,12 +47,12 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
   `);
 
   if (loading) return <Content>&#x231B; Loading...</Content>;
-  if (error) return <Content>&#x274C; Error :(</Content>;
+  if (error) return <Content>&#x274C; There was an error</Content>;
 
   return (
     <Content>
       {data[thingsType].map(({ id, name, thumbnail, creator }) => (
-        <ListedThingCard key={id} className="grow">
+        <ListedThingCard key={id}>
           <Link to={`/things/${id}`} style={{ textDecoration: 'none' }}>
             <ThingHeader>
               <CreatorImage src={creator.thumbnail} alt="thumbnail" />
@@ -61,9 +61,9 @@ export const Things: React.FC<IThingsProps> = ({ thingsType }) => {
               </div>
             </ThingHeader>
             <ListImage src={thumbnail} alt="thumbnail" />
-            <InteractionFooter>
+            <ListFooter>
               <div>{name}</div>
-            </InteractionFooter>
+            </ListFooter>
           </Link>
         </ListedThingCard>
       ))}
