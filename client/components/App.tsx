@@ -36,7 +36,7 @@ const theme: IThemeProps = {
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: 'http://localhost:4000/',
+    uri: `${process.env.SERVER}:${process.env.PORT}/graphql`,
     headers: {
         Authorization: localStorage.getItem('auth') || ''
     }

@@ -22,9 +22,9 @@ const Login: React.FC<RouteComponentProps> = props => {
         }
 
         const code = props.location.search.split("=")[1];
-
+        
         if (code) {
-            axios.post('http://localhost:3000/auth', { code })
+            axios.post(`${process.env.SERVER}:${process.env.PORT}/auth`, { code })
                 .then(({ data }) => {
                     const tokenData = data.split('&').flatMap(t => t.split("="));
                     const accessToken = tokenData[1];
@@ -33,7 +33,7 @@ const Login: React.FC<RouteComponentProps> = props => {
                     if (tokenType && accessToken) {
                         const bearer = `${tokenType} ${accessToken}`;
                         context.login(bearer);
-                        window.location.href = "http://localhost:1234/";
+                        window.location.href = `${process.env.SERVER}:${process.env.PORT}`;
                     } else {
                         redirect();
                     }

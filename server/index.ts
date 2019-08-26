@@ -1,8 +1,7 @@
 require('dotenv').config();
 import console = require('console');
 import express from 'express';
-import graphqlHTTP from 'express-graphql';
-import { ApolloServer, makeExecutableSchema } from 'apollo-server';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import cors from 'cors';
 import axios from 'axios';
 import { typeDefs } from './typeDefs';
@@ -28,13 +27,9 @@ const server = new ApolloServer({
 app.set('port', process.env.PORT || 3000);
 
 // Middlewares
-app.use(express.json());
 app.use('*', cors());
-
-app.use('/graphql', graphqlHTTP({
-    schema,
-    graphiql: true
-}));
+app.use(express.json());
+server.applyMiddleware({ app, path: '/graphql' });
 
 //Routes
 app.post('/auth', (req, res) => {
@@ -53,9 +48,10 @@ app.post('/auth', (req, res) => {
         });
 });
 
+
 // Static files
 app.use(express.static('dist'));
+app.use("/login", express.static('dist'));
 
 // Starting the servers
 app.listen(app.get('port'), () => console.log(`Server listening on port ${app.get('port')}`));
-server.listen().then(({ url }) => console.log(`Apollo Server ready at ${url}`));
