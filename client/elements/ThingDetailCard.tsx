@@ -39,10 +39,12 @@ export const ThingContainer = styled.div`
     display: flex;
     justify-content: space-between;
     vertical-align: top;
+    flex-wrap: wrap;
 `;
 
-export const DescriptionContainer = styled.section`
-    width: 55%;
+export const DescriptionContainer = styled.div`
+    width: 500px;
+    margin-left: 10px;
 `;
 
 export const DetailFooter = styled.div`

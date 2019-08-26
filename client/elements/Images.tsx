@@ -19,6 +19,7 @@ export const ListImage = styled.img`
 `;
 
 export const DetailImage = styled.img`
-    width: 40%;
-    height: auto;
+    width: auto;
+    height: 300px;
+    margin-bottom: 20px;
 `;
