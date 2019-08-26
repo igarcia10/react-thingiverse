@@ -7,6 +7,7 @@ import axios from 'axios';
 import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
 import ThingiverseAPI from './ThingiverseAPI';
+import path from 'path';
 
 // Initializations
 const app = express();
@@ -51,7 +52,9 @@ app.post('/auth', (req, res) => {
 
 // Static files
 app.use(express.static('dist'));
-app.use("/login", express.static('dist'));
+app.get('/*', (_, res) => {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 // Starting the servers
 app.listen(app.get('port'), () => console.log(`Server listening on port ${app.get('port')}`));
