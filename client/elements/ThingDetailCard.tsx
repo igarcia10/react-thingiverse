@@ -43,7 +43,7 @@ export const ThingContainer = styled.div`
 `;
 
 export const DescriptionContainer = styled.div`
-    width: 500px;
+    width: 600px;
     margin-left: 10px;
 `;
 
