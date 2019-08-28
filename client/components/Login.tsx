@@ -17,7 +17,7 @@ const Login: React.FC<RouteComponentProps> = props => {
     useEffect(() => {
 
         if (context.bearer) {
-            props.history.push('/latest');
+            props.history.push('/newest');
             return;
         }
 
