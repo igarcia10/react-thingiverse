@@ -52,7 +52,7 @@ const App: React.FC = () => (
                             <Header />
                             <Switch>
                                 <Route exact path="/" render={() => bearer ? <Redirect to='/things/newest' /> : <Landing />} />
-                                <Route path="/login" component={Login} />} />
+                                <Route path="/login" component={Login} />
                                 <ProtectedRoute path="/things/newest" thingsType={EThingsType.Newest} component={ThingList} />
                                 <ProtectedRoute path="/things/popular" thingsType={EThingsType.Popular} component={ThingList} />
                                 <ProtectedRoute path="/things/featured" thingsType={EThingsType.Featured} component={ThingList} />
